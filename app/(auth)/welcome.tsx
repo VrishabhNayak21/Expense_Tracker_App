@@ -12,15 +12,17 @@ import Typo from '@/components/Typo'
 import Button from '@/components/Button'
 import { colors, spacingX, spacingY } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
+import { useRouter } from 'expo-router'
 
 const Welcome = () => {
+  const router = useRouter()
   return (
     <ScreenWrapper>
       <View style={styles.container}>
 
         {/* Login */}
         <Animated.View entering={FadeIn.duration(700)}>
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity onPress={()=> router.push('/(auth)/login')} style={styles.loginButton}>
             <Typo fontWeight="600">Sign in</Typo>
           </TouchableOpacity>
         </Animated.View>
@@ -73,7 +75,7 @@ const Welcome = () => {
               .easing(Easing.out(Easing.cubic))}
             style={styles.buttonBox}
           >
-            <Button style={styles.ctaButton}>
+            <Button onPress={()=> router.push('/(auth)/register')} style={styles.ctaButton}>
               <View style={{ alignItems: 'center' }}>
                 <Typo size={22} fontWeight="700" color={colors.neutral900}>
                   Get Started
